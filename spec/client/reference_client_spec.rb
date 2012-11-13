@@ -12,26 +12,4 @@ describe ReferenceClient do
     @reference_client.get_categories.should == categories_response
   end
 
-  it "should send GET request and create Category from result" do
-    category_response = mock "category"
-    category_code = "VAUT"
-    Category.should_receive(:from_hash).and_return category_response
-
-    @reference_client.get_category(category_code).should == category_response
-  end
-
-  it "should send GET request and create Locations array from result" do
-    locations_response = mock "locations_array"
-    Location.should_receive(:from_array).and_return locations_response
-
-    @reference_client.get_locations.should == locations_response
-  end
-
-  it "should send GET request and create Sources array from result" do
-    sources_response = mock "sources_array"
-    Source.should_receive(:from_array).and_return sources_response
-
-    @reference_client.get_sources.should == sources_response
-  end
-
 end

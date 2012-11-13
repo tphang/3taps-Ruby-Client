@@ -12,7 +12,7 @@
 #  response.execTimeMs   # => 100
 #  response.exec_time_ms # => 100
 #
-class SummaryResponse < Struct.new(:totals, :execTimeMs) do
+class SummaryResponse < Struct.new(:totals, :total, :execTimeMs) do
     def exec_time_ms
       execTimeMs
     end

@@ -1,26 +1,27 @@
 # Class Category represents structure of category:
 #
 #  category = Category.new
-#  category.code        # => String
-#  category.group       # => String
-#  category.category    # => String
-#  category.hidden      # => Boolean
-#  category.annotations # => Array of Annotation objects
-
-#  category.from_array(array) # =>  Array of Category objects
+#  category.code            # => String
+#  category.name            # => String
+#  category.isCategoryClass # => Boolean
+#  category.children        # => Array
 #
-class Category < Struct.new(:group, :category, :code, :annotations, :hidden)
+class Category < Struct.new(:code, :name, :isCategoryClass, :children)
 
-  # Method +from_array+ returns array of categories(create from json).
-  # Takes value of array objects as json parameter array.
-  #
-  # Example:
-  #
-  #  Category.from_array([...array of JSON objects...]) # => Array of Category
-  #
-  def self.from_array(array)
-    array.collect do |element|
-      Category.new(element)
+  #allows initialization of a new struct with an attribute hash
+  def initialize(attributes = {})
+    if attributes[:categoryClass].nil?
+      self.isCategoryClass = false
+      self.code = attributes[:category]
+      self.name = attributes[:categoryName]
+    else
+      self.isCategoryClass = true
+      self.children = []
+      self.code = attributes[:categoryClass]
+      self.name = attributes[:categoryClassName]
+
+      attributes[:categories].each { |child| self.children << Category.new(child) }
     end
   end
+
 end

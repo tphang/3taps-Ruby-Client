@@ -31,7 +31,7 @@ class SearchResponse < Struct.new(:success, :numResults, :execTimeMs, :results) 
   # +results+ field is filled with array of Posting objects.
   def initialize(hash = {})
     hash.each do |key, value|
-      self.send("#{key}=".to_sym, key == 'results' ? value.collect {|item| Posting.new(item)} : value )
+      self.send("#{key}=".to_sym, key == 'results' ? value.collect {|item| Posting.new(item).to_hash } : value )
     end
   end
 end

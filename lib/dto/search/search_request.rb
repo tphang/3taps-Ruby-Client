@@ -1,8 +1,7 @@
 class SearchRequest
   # annotations attribute should be a Hash object
   attr_accessor :rpp, :page, :source, :category, :location, :heading,
-    :body, :text, :external_id, :start, :end, :annotations,
-    :trusted_annotations, :retvals
+    :body, :text, :external_id, :start, :end, :annotations, :retvals
 
   def add_retval(retval)
     @retvals << retval
@@ -57,17 +56,8 @@ class SearchRequest
     end
 
     if (annotations != nil && annotations.size > 0)
-#      query[:annotations] = ActiveSupport::JSON.encode(annotations)
       query[:annotations] = annotations
-#      query.each do |key, value|
-#        url_params += "#{key}=#{value}&"
-#      end
-      url_params += "annotations=#{CGI.escape(ActiveSupport::JSON.encode(query[:annotations]))}&" #'annotations=#{CGI.escape(ActiveSupport::JSON.encode(search.annotations))}'
-    end
-    if (trusted_annotations != nil && trusted_annotations.size > 0)
-      #query[:trusted_annotations] = ActiveSupport::JSON.encode(trusted_annotations)
-      query[:trusted_annotations] = trusted_annotations
-      url_params += "trusted_annotations=#{CGI.escape(ActiveSupport::JSON.encode(query[:trusted_annotations]))}&"
+      url_params += "annotations=#{CGI.escape(ActiveSupport::JSON.encode(query[:annotations]))}&"
     end
     if (retvals != nil)
       query[:retvals] = retvals.join(',')  #queryParams.put("retvals", Utils.join(retvals));

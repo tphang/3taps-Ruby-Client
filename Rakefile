@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "https://github.com/3taps/3taps-Ruby-Client"
   gem.license = "MIT"
   gem.summary = %Q{A Ruby gem for accessing the 3taps API}
-  gem.description = %Q{A Ruby gem for accessing the 3taps API. See more at http://developers.3taps.net}
+  gem.description = %Q{A Ruby gem for accessing the 3taps API. See more at http://3taps.com/developers}
   gem.email = "developers@3taps.com"
   gem.authors = ["3taps.com"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

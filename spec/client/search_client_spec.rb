@@ -14,16 +14,6 @@ describe SearchClient do
     @search_client.search(search_request).should == search_response
   end
 
-  it "should send GET request and create RangeResponse from result" do
-    stub_get_and_json_decode
-    range_request = mock "range_request"
-    range_request.should_receive(:query_params)
-    range_response = mock "range_response"
-    RangeResponse.should_receive(:from_array).and_return range_response
-
-    @search_client.range(range_request).should == range_response
-  end
-
   it "should send GET request and create SummaryResponse from result" do
     summary_request = mock "summary_request"
     summary_request.should_receive(:query_params)
@@ -40,14 +30,6 @@ describe SearchClient do
     CountResponse.should_receive(:new).and_return count_response
 
     @search_client.count(search_request).should == count_response
-  end
-  it "should send GET request and create BestMatchResponse from result" do
-    keywords = ""
-    bestmatch_response = mock "bestmatch_response"
-    stub_get_and_json_decode
-    BestMatchResponse.stub!(:new).and_return bestmatch_response
-
-    @search_client.best_match(keywords).should == bestmatch_response
   end
 
 end
